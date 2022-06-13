@@ -2,8 +2,9 @@ import sys # Tools within sys are used to exit the game when the player quits
 import pygame
 
 from settings import Settings
+from puppy import Puppy
 
-class AlienInvasion:
+class CatInvasion:
     """Overall class to manage game assets and behavior."""
 
     def __init__(self):
@@ -13,7 +14,9 @@ class AlienInvasion:
         
         self.screen = pygame.display.set_mode(
             (self.settings.screen_width, self.settings.screen_height))
-        pygame.display.set_caption("Alien Invasion")
+        pygame.display.set_caption("Cat Invasion")
+        
+        self.puppy = Puppy(self)
 
         # Set the background color.
         self.bg_color = self.settings.bg_color
@@ -28,11 +31,12 @@ class AlienInvasion:
 
             # Redraw the screen during each pass through the loop.
             self.screen.fill(self.bg_color)
+            self.puppy.blitme()
 
             # Make the most recently drawn screen visible.
             pygame.display.flip()
 
 if __name__ == '__main__':
     # Make a game instance, and run the game.
-    ai = AlienInvasion()
-    ai.run_game()
+    ci = CatInvasion()
+    ci.run_game()
